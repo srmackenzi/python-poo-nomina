@@ -1,4 +1,4 @@
-# 🏦 Sistema de Gestión de Nómina (POO) ||21/12/2025. mackenziedev. SrMackenzi
+# 🏦 Sistema de Gestión de Nómina (POO) |21/12/2025. 
 
 Este proyecto es una implementación avanzada de **Programación Orientada a Objetos** en Python, diseñada para gestionar diferentes tipos de empleados dentro de una organización.
 
