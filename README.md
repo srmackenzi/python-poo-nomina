@@ -1,2 +1,19 @@
-# python-poo-nomina
-Sistema de gestión de nómina utilizando Programación Orientada a Objetos (POO), Herencia y Polimorfismo en Python
+# 🏦 Sistema de Gestión de Nómina (POO) ||21/12/2025. mackenziedev. SrMackenzi
+
+Este proyecto es una implementación avanzada de **Programación Orientada a Objetos** en Python, diseñada para gestionar diferentes tipos de empleados dentro de una organización.
+
+## 🧠 Conceptos Aplicados
+* **Herencia:** Clase base `Empleado` con especializaciones para `Desarrollador`, `Gerente` y `Freelancer`.
+* **Polimorfismo:** Implementación dinámica del método `calcular_pago()` y `mostrar_detalles()` según el tipo de objeto.
+* **Encapsulamiento:** Uso de atributos protegidos (`_`) y decoradores `@property` para asegurar la integridad de los datos.
+* **Composición:** La clase `Gerente` gestiona una colección de objetos de tipo `Empleado`.
+
+## 🛠️ Estructura del Código
+El sistema permite:
+1. Crear empleados con salarios base o tarifas por hora.
+2. Asignar bonos específicos a roles de liderazgo.
+3. Gestionar equipos de trabajo de forma dinámica.
+4. Generar reportes de pago automáticos.
+
+---
+*Proyecto educativo para el dominio de arquitecturas limpias en Python.*
