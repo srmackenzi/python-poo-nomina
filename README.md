@@ -1,6 +1,6 @@
 # 🏦 Sistema de Gestión de Nómina (POO) |21/12/2025. 
 
-Este proyecto es una implementación avanzada de **Programación Orientada a Objetos** en Python, diseñada para gestionar diferentes tipos de empleados dentro de una organización.
+Este proyecto es una implementación avanzada de **Programación Orientada a Objetos** en Python, diseñada para gestionar diferentes tipos de empleados dentro de una organización. Planeo continuar mejorandolo y añadiendole funciones a medida que avance en mi aprendizaje
 
 ## 🧠 Conceptos Aplicados
 * **Herencia:** Clase base `Empleado` con especializaciones para `Desarrollador`, `Gerente` y `Freelancer`.
