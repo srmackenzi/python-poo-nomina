@@ -1,9 +1,10 @@
-# 🏦 Sistema de Gestión de Nómina (POO) |21/12/2025. 
+# 🏦 Sistema de Gestión de Nómina (POO) |21/12/2025. || Actualizacion 22/12/2025.
 
 Este proyecto es una implementación avanzada de **Programación Orientada a Objetos** en Python, diseñada para gestionar diferentes tipos de empleados dentro de una organización. Planeo continuar mejorandolo y añadiendole funciones a medida que avance en mi aprendizaje
 
 ## 🧠 Conceptos Aplicados
-* **Herencia:** Clase base `Empleado` con especializaciones para `Desarrollador`, `Gerente` y `Freelancer`.
+* **Herencia:** Clase base `Empleado` con especializaciones para `Desarrollador`, `Gerente` y `Freelancer`. Se agrego una clase * **utilizando el concepto de Duck Typing, la clase "PRACTICANTE" No hereda de Empleado por lo tanto, es duck typing. 
+* **No se centra en la jerarquia, sino en el comportamiento, no me importa que sea. Mientras se comporte de una maneraera
 * **Polimorfismo:** Implementación dinámica del método `calcular_pago()` y `mostrar_detalles()` según el tipo de objeto.
 * **Encapsulamiento:** Uso de atributos protegidos (`_`) y decoradores `@property` para asegurar la integridad de los datos.
 * **Composición:** La clase `Gerente` gestiona una colección de objetos de tipo `Empleado`.
