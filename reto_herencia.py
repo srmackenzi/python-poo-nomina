@@ -10,6 +10,7 @@
 # clase hija 2: gerente, hereda de empleado, añade departamento, añade el aitrbuto bono
 # sobreescribe el metodo calculador pago para que retorne el salario base mas el bono
 # clase hija 3: freelancer, sin salario base, su metodo calcular pago recibe horas y tarifa por hora
+# PARA LA SOBREESCRITURA DEBO UTIIZAR EL MISMO NOMBRE DEL METODO DE LA CLASE PADRE PERO MODIFICAR SU FUNCIONALIDAD SEGUN LO NECESITE EN LA CLASE HIJA
 # -----------------------
 class Empleado:
     def __init__(self, nombre, id, salario_base):
@@ -17,12 +18,19 @@ class Empleado:
         self._id = id
         self._salario_base = salario_base
 
-    @property
+    @property # GETTER
     def nombre(self): return self._nombre
-    @property
+    @property # GETTER
     def id(self): return self._id
-    @property
+    @property # GETTER
     def salario_base(self): return self._salario_base
+    
+    @nombre.setter # SETTER
+    def nombre(self, nombre): self._nombre = nombre
+    @id.setter # SETTER
+    def id(self, id): self._id = id
+    @salario_base.setter # SETTER
+    def salario_base(self, salario_base): self._salario_base = salario_base
     
     def mostrar_detalles(self):
         print(f"\n--- INFORMACION DE {self._nombre} ---")
@@ -85,6 +93,22 @@ class Freelancer(Empleado):
     def mostrar_detalles(self):
         super().mostrar_detalles()
         print(f"Tipo: Freelance | Pago final({self._horas}horas * {self._tarifa_por_hora}): {self.calcular_pago()}")
+# --- PRACTICANTE ---
+class Practicante(Empleado):
+    def __init__(self, nombre, id, horas, tarifa_por_hora):
+        # Un practicante en este caso tiene salario base 0
+        super().__init__(nombre, id, 0)
+        self._horas = horas
+        self._tarifa_por_hora = tarifa_por_hora
+        # QUIERO APLICAR DUCK TYPING    
+        
+    def calcular_pago(self):
+        return self._horas * self._tarifa_por_hora    
+        
+
+    def mostrar_detalles(self):
+        super().mostrar_detalles()
+        print(f"Tipo: Practicante | Pago final: {self.calcular_pago()}")
 
 # --- PRUEBA DEL SISTEMA ---
 if __name__ == "__main__":
@@ -93,7 +117,8 @@ if __name__ == "__main__":
     dev1 = Desarrollador("Gabriel", "D001", 1200, "Python")
     dev2 = Desarrollador("Hamssy", "D002", 1000, "Python")
     free1 = Freelancer("Phillips", "F001", 15, 100)
-
+    prac1 = Practicante("Juan", "P001", 10, 50)
+    
     # CREO AL JEFE(GERENTE)
     boss = Gerente("Ibrahim", "G001", 5000, "Sistemas", 1500)
 
@@ -101,6 +126,6 @@ if __name__ == "__main__":
     boss.agregar_empleado(dev1)
     boss.agregar_empleado(dev2)
     boss.agregar_empleado(free1)
-
+    boss.agregar_empleado(prac1)
     # MUESTRO EL EQUIPO PARA TESTEAR
     boss.mostrar_equipo()
