@@ -7,11 +7,13 @@
 # un metodo llamado calculador pago que simplemente retorne el salario base
 # clase hija 1: desarrollador, hereda de empleado, añade lenguaje principal, sobreescribe el 
 # metodo mostrar detalles para que tambien mencione el lenguaje principal
-# clase hija 2: gerente, hereda de empleado, añade departamento, añade el aitrbuto bono
+# clase hija 2: gerente, hereda de empleado, añade departamento, añade el atributo bono
 # sobreescribe el metodo calculador pago para que retorne el salario base mas el bono
 # clase hija 3: freelancer, sin salario base, su metodo calcular pago recibe horas y tarifa por hora
+# clase hija 4: practicante, sin salario base, su metodo calcular pago recibe horas y tarifa por hora
 # PARA LA SOBREESCRITURA DEBO UTIIZAR EL MISMO NOMBRE DEL METODO DE LA CLASE PADRE PERO MODIFICAR SU FUNCIONALIDAD SEGUN LO NECESITE EN LA CLASE HIJA
-# -----------------------
+# AÑADI CLASE PRATICANTE QUE NO HEREDA DE EMPLEADO, PERO AUNQUE NO HEREDA, SE COMPORTA IGUAL QUE UN EMPLEADO
+# --------------------------------------------------------
 class Empleado:
     def __init__(self, nombre, id, salario_base):
         self._nombre = nombre
@@ -38,6 +40,7 @@ class Empleado:
 
     def calcular_pago(self):
         return self._salario_base
+    # --------------------------------------------------------
 
 # --- DESARROLLADOR ---
 class Desarrollador(Empleado):
@@ -48,6 +51,7 @@ class Desarrollador(Empleado):
     def mostrar_detalles(self):
         super().mostrar_detalles()
         print(f"Especialidad: Desarrollador {self._lenguaje_principal}")
+    # --------------------------------------------------------
 
 # --- GERENTE ---
 class Gerente(Empleado):
@@ -79,6 +83,7 @@ class Gerente(Empleado):
     def mostrar_detalles(self):
         super().mostrar_detalles()
         print(f"Puesto: Gerente de {self._departamento} | Bono: {self._bono}")
+    # --------------------------------------------------------
 # --- FREELANCER ---
 class Freelancer(Empleado):
     def __init__(self, nombre, id, horas, tarifa_por_hora):
@@ -93,23 +98,25 @@ class Freelancer(Empleado):
     def mostrar_detalles(self):
         super().mostrar_detalles()
         print(f"Tipo: Freelance | Pago final({self._horas}horas * {self._tarifa_por_hora}): {self.calcular_pago()}")
+    # --------------------------------------------------------
 # --- PRACTICANTE ---
-class Practicante(Empleado):
+class Practicante: # No hereda de Empleado por lo tanto, es duck typing. 
+    # No se centra en la jerarquia, sino en el comportamiento, no me importa que sea
+    # Mientras se comporte de una manera
     def __init__(self, nombre, id, horas, tarifa_por_hora):
         # Un practicante en este caso tiene salario base 0
-        super().__init__(nombre, id, 0)
+        self.nombre = nombre
         self._horas = horas
         self._tarifa_por_hora = tarifa_por_hora
-        # QUIERO APLICAR DUCK TYPING    
         
     def calcular_pago(self):
         return self._horas * self._tarifa_por_hora    
-        
 
     def mostrar_detalles(self):
-        super().mostrar_detalles()
-        print(f"Tipo: Practicante | Pago final: {self.calcular_pago()}")
-
+        print(f"\n--- INFORMACION DE {self.nombre} ---")
+        print(f"Tipo: Practicante")
+        print(f"Pago final({self._horas}horas * {self._tarifa_por_hora}): {self.calcular_pago()}")
+# --------------------------------------------------------
 # --- PRUEBA DEL SISTEMA ---
 if __name__ == "__main__":
 
