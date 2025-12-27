@@ -1,20 +1,7 @@
 # 19/12/2025 mackenziedev.
-# RETO HERENCIA
-# Crear una jerarquia donde existe una clase padre y varias clases hijas que heredan
-# Pero añaden su propia funcionalidad o toque
-# La clase padre sera Empleado, debe tener los atributos:
-# nombre,id,salario base, un metodo mostrar detalles que imprima la informacion del empleado
-# un metodo llamado calculador pago que simplemente retorne el salario base
-# clase hija 1: desarrollador, hereda de empleado, añade lenguaje principal, sobreescribe el 
-# metodo mostrar detalles para que tambien mencione el lenguaje principal
-# clase hija 2: gerente, hereda de empleado, añade departamento, añade el atributo bono
-# sobreescribe el metodo calculador pago para que retorne el salario base mas el bono
-# clase hija 3: freelancer, sin salario base, su metodo calcular pago recibe horas y tarifa por hora
-# clase hija 4: practicante, sin salario base, su metodo calcular pago recibe horas y tarifa por hora
-# PARA LA SOBREESCRITURA DEBO UTIIZAR EL MISMO NOMBRE DEL METODO DE LA CLASE PADRE PERO MODIFICAR SU FUNCIONALIDAD SEGUN LO NECESITE EN LA CLASE HIJA
-# AÑADI CLASE PRATICANTE QUE NO HEREDA DE EMPLEADO, PERO AUNQUE NO HEREDA, SE COMPORTA IGUAL QUE UN EMPLEADO
+from abc import ABC, abstractmethod
 # --------------------------------------------------------
-class Empleado:
+class Empleado(ABC): # CLASE PADRE ABSTRACTA
     def __init__(self, nombre, id, salario_base):
         self._nombre = nombre
         self._id = id
@@ -38,12 +25,14 @@ class Empleado:
         print(f"\n--- INFORMACION DE {self._nombre} ---")
         print(f"ID: {self._id} | Salario Base: {self._salario_base}")
 
+    @abstractmethod # METODO ABSTRACTO
     def calcular_pago(self):
-        return self._salario_base
+        """Es obligatorio implementar este metodo en las clases hijas."""
+        pass
     # --------------------------------------------------------
 
 # --- DESARROLLADOR ---
-class Desarrollador(Empleado):
+class Desarrollador(Empleado): # CLASE HIJA
     def __init__(self, nombre, id, salario_base, lenguaje_principal):
         super().__init__(nombre, id, salario_base) # Solo lo que pide Empleado
         self._lenguaje_principal = lenguaje_principal
@@ -51,15 +40,25 @@ class Desarrollador(Empleado):
     def mostrar_detalles(self):
         super().mostrar_detalles()
         print(f"Especialidad: Desarrollador {self._lenguaje_principal}")
+
+    def calcular_pago(self):
+        return self._salario_base
     # --------------------------------------------------------
 
 # --- GERENTE ---
-class Gerente(Empleado):
+class Gerente(Empleado): # CLASE HIJA
     def __init__(self, nombre, id, salario_base, departamento, bono):
         super().__init__(nombre, id, salario_base)
         self._departamento = departamento
         self._bono = bono
         self._equipo = []
+
+    def mostrar_detalles(self):
+        super().mostrar_detalles()
+        print(f"Departamento: {self._departamento} | Bono: {self._bono}")
+
+    def calcular_pago(self):
+        return self._salario_base + self._bono
 
     # Recibimos el objeto completo (no sus datos sueltos)
     def agregar_empleado(self, empleado_objeto):
@@ -85,7 +84,7 @@ class Gerente(Empleado):
         print(f"Puesto: Gerente de {self._departamento} | Bono: {self._bono}")
     # --------------------------------------------------------
 # --- FREELANCER ---
-class Freelancer(Empleado):
+class Freelancer(Empleado): # CLASE HIJA
     def __init__(self, nombre, id, horas, tarifa_por_hora):
         # Un Freelancer no tiene salario_base, pasamos 0 al padre
         super().__init__(nombre, id, 0)
@@ -122,7 +121,7 @@ if __name__ == "__main__":
 
     # CREO EL PERSONAL
     dev1 = Desarrollador("Gabriel", "D001", 1200, "Python")
-    dev2 = Desarrollador("Hamssy", "D002", 1000, "Python")
+    dev2 = Desarrollador("Simone", "D002", 1000, "Python")
     free1 = Freelancer("Phillips", "F001", 15, 100)
     prac1 = Practicante("Juan", "P001", 10, 50)
     
